@@ -4,6 +4,18 @@ Plataforma da **formatation**: site institucional, pedido de orçamento com uplo
 
 React + Vite + TypeScript no front; Supabase (Postgres, Auth e Storage) no backend. Pagamento é combinado fora do site (Pix/cartão pelo WhatsApp).
 
+## Como trabalhamos (branches)
+
+- **`dev`**: desenvolvimento. Toda mudança nova entra aqui primeiro.
+- **`main`**: versão pronta. Só recebe o que já foi conferido no `dev`, via *pull request* `dev → main`.
+
+A cada envio para `dev` ou `main`, e em todo pull request para `main`, o GitHub roda a **Verificação** (aba *Actions*):
+
+1. **Site compila**: instala as dependências e gera a versão de produção.
+2. **Regras de acesso do banco**: sobe um Postgres 16 limpo, aplica `supabase/schema.sql` duas vezes (para garantir que pode ser reaplicado) e roda os 32 testes de `tests/rls_test.py`.
+
+Se algum passo falhar, o commit aparece com ✗ vermelho e não deve ir para o `main`.
+
 ## Rodar localmente
 
 ```bash

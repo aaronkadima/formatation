@@ -1,5 +1,10 @@
+"""Testes das regras de acesso (RLS) do schema.
+
+Uso: aplique tests/supabase_stub.sql e supabase/schema.sql num banco vazio e rode
+    python3 tests/rls_test.py
+A conexão vem das variáveis padrão do psql (PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATABASE).
+"""
 import subprocess, sys
-D='/var/lib/postgresql/fmt-test'
 A='aaaaaaaa-0000-0000-0000-00000000000a'
 B='bbbbbbbb-0000-0000-0000-00000000000b'
 ADM='cccccccc-0000-0000-0000-00000000000c'
@@ -8,7 +13,7 @@ def sql(q, user=None, role='authenticated'):
     pre = ''
     if user or role == 'anon':
         pre = f"set role {role}; select set_config('request.jwt.claim.sub', '{user or ''}', false); "
-    r = subprocess.run(['psql','-h',D,'-p','5499','-U','postgres','-tAq','-v','ON_ERROR_STOP=1','-c',pre+q],capture_output=True,text=True)
+    r = subprocess.run(['psql','-tAq','-v','ON_ERROR_STOP=1','-c',pre+q],capture_output=True,text=True)
     return r.returncode, (r.stdout.strip().splitlines() or [''])[-1], r.stderr.strip()
 
 results=[]
