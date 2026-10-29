@@ -158,7 +158,7 @@ export default function Pedido() {
             <div className="form-grid">
               <div className="field"><label htmlFor="document_type">Tipo de documento</label><select id="document_type" value={form.document_type} onChange={(e) => set('document_type', e.target.value)}>{DOC_TYPES.map((d) => <option key={d}>{d}</option>)}</select></div>
               <div className="field"><label htmlFor="norm">Norma</label><select id="norm" value={form.norm} onChange={(e) => set('norm', e.target.value)}>{NORMS.map((n) => <option key={n}>{n}</option>)}</select></div>
-              <div className="field"><label htmlFor="pages">Nº aproximado de páginas</label><input id="pages" type="number" min={1} inputMode="numeric" value={form.pages} onChange={(e) => set('pages', e.target.value)} /></div>
+              <div className="field"><label htmlFor="pages">Nº aproximado de páginas</label><span className="hint">Usamos para estimar as laudas (2.100 caracteres)</span><input id="pages" type="number" min={1} inputMode="numeric" value={form.pages} onChange={(e) => set('pages', e.target.value)} /></div>
               <div className="field"><label htmlFor="deadline">Prazo desejado <span className="muted">(opcional)</span></label><input id="deadline" type="date" min={today()} value={form.desired_deadline} onChange={(e) => set('desired_deadline', e.target.value)} /></div>
             </div>
 

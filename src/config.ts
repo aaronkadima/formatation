@@ -14,11 +14,14 @@ export const BUSINESS = {
   payment: '[Pix, cartão ou boleto — 50% na aprovação e 50% na entrega.]',
 };
 
-// Formatação cobrada por página (documento inteiro, com pré e pós-textuais).
+// Formatação e revisão cobradas por lauda; tradução por palavra do texto original.
 export const PRICING = {
-  essencial: '4,00',
-  completo: '6,00',
-  minimum: 'R$ 80',
+  // Lauda = 2.100 caracteres com espaços (≈ 1 página ABNT, fonte 12, espaço 1,5).
+  unit: 'lauda',
+  unitDefinition: '2.100 caracteres com espaços (≈ 1 página ABNT)',
+  essencial: '9',
+  completo: '14',
+  minimum: 'R$ 150',
   urgency48: '+50%',
   urgency24: '+100%',
 };

@@ -97,18 +97,18 @@ export default function Home() {
 
       <section id="planos" className="container section" style={{ paddingTop: 40 }}>
         <p className="kicker">02 — Planos de formatação</p>
-        <h2 className="h-display h2" style={{ maxWidth: 760, marginBottom: 48 }}>Escolha o nível de cuidado. O preço sai por página.</h2>
+        <h2 className="h-display h2" style={{ maxWidth: 760, marginBottom: 48 }}>Escolha o nível de cuidado. O preço sai por lauda.</h2>
         <div className="plans">
           <div className="plan">
             <div><h3 className="name">Essencial</h3><p className="desc muted" style={{ margin: '6px 0 0' }}>Para quem precisa entregar dentro da norma.</p></div>
-            <p className="price">R$ {PRICING.essencial}<small> /página</small></p>
+            <p className="price">R$ {PRICING.essencial}<small> /{PRICING.unit}</small></p>
             <ul><li>Formatação completa na norma escolhida</li><li>Sumário, listas e numeração automáticos</li><li>Referências padronizadas</li><li>1 rodada de ajustes</li></ul>
             <Link to="/pedido?plano=essencial" className="btn">Escolher Essencial</Link>
           </div>
           <div className="plan dark">
             <span className="plan-badge">MAIS PEDIDO</span>
             <div><h3 className="name">Completo</h3><p className="desc" style={{ margin: '6px 0 0' }}>Para defesa, depósito e submissão sem surpresas.</p></div>
-            <p className="price">R$ {PRICING.completo}<small> /página</small></p>
+            <p className="price">R$ {PRICING.completo}<small> /{PRICING.unit}</small></p>
             <ul><li>Tudo do Essencial</li><li>Tabelas e figuras padronizadas</li><li>Conferência citação × referência</li><li>Template editável para continuar escrevendo</li><li>Ajustes até a versão final ({BUSINESS.revisionWindow})</li></ul>
             <Link to="/pedido?plano=completo" className="btn btn-light">Escolher Completo</Link>
           </div>
@@ -127,12 +127,13 @@ export default function Home() {
           <div>
             <p className="label">Condições</p>
             <ul>
+              <li><span>Unidade</span><strong>lauda de 2.100 caracteres</strong></li>
               <li><span>Pedido mínimo</span><strong>{PRICING.minimum}</strong></li>
               <li><span>Urgência em 48 h</span><strong>{PRICING.urgency48}</strong></li>
               <li><span>Urgência em 24 h</span><strong>{PRICING.urgency24}</strong></li>
             </ul>
           </div>
-          <p className="muted" style={{ margin: 0, fontSize: 14, gridColumn: '1 / -1' }}>Contamos todas as páginas do arquivo, inclusive capa, sumário e referências. O orçamento final vem fechado antes de começarmos.</p>
+          <p className="muted" style={{ margin: 0, fontSize: 14, gridColumn: '1 / -1' }}>Lauda = {PRICING.unitDefinition}. Contamos o arquivo inteiro, inclusive pré-textuais e referências; tradução é cobrada por palavra do texto original. O orçamento final vem fechado antes de começarmos.</p>
         </div>
       </section>
 
