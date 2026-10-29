@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BUSINESS, whatsappLink } from '../config';
+import { BUSINESS, DEADLINES, PRICING, whatsappLink } from '../config';
 import { GROUPS, SERVICES, type ServiceGroup } from '../lib/catalog';
 import { ArrowIcon, CheckIcon, ClockIcon, DocIcon, LockIcon } from '../components/ui';
 
@@ -36,7 +36,7 @@ function AnnotatedSheet() {
 const FAQ = [
   ['Vocês alteram o conteúdo do meu trabalho?', 'Não. A formatação mexe só na forma. Mudanças no texto acontecem apenas nos serviços de revisão e tradução, sempre com controle de alterações para você aprovar.'],
   ['Em quais formatos vocês trabalham?', 'Word, Google Docs e LaTeX (Overleaf). A entrega vem no mesmo formato, mais um PDF de conferência.'],
-  ['Qual é o prazo?', `Depende do tamanho e do plano: em média ${BUSINESS.avgDays} dias úteis para uma dissertação. O prazo exato vem fechado no orçamento.`],
+  ['Qual é o prazo?', `Formatação: 3 dias úteis para artigo ou TCC, ${BUSINESS.avgDays} para dissertação e 7 para tese. Urgência em 24 ou 48 horas tem acréscimo. O prazo exato vem fechado no orçamento.`],
   ['Atendem qualquer área?', 'Sim para formatação. Em tradução e figuras técnicas, a especialidade é engenharia e ciências exatas; outras áreas, sob consulta.'],
   ['Como acompanho meu pedido?', 'Pela área do cliente: você entra com um link enviado ao seu e-mail, vê o orçamento, aprova e baixa a entrega — sem senha.'],
   ['Como é o pagamento?', BUSINESS.payment],
@@ -84,6 +84,10 @@ export default function Home() {
                   <div className="svc-top"><span>{s.id}</span>{s.exclusive && <span className="tag">EXCLUSIVO</span>}</div>
                   <h4 className="h3">{s.title}</h4>
                   <p>{s.description}</p>
+                  <dl className="svc-meta">
+                    <div><dt>Preço</dt><dd>{s.price}</dd></div>
+                    <div><dt>Prazo</dt><dd>{s.deadline}</dd></div>
+                  </dl>
                 </article>
               ))}
             </div>
@@ -97,23 +101,38 @@ export default function Home() {
         <div className="plans">
           <div className="plan">
             <div><h3 className="name">Essencial</h3><p className="desc muted" style={{ margin: '6px 0 0' }}>Para quem precisa entregar dentro da norma.</p></div>
-            <p className="price">R$ [PREÇO]<small> /página</small></p>
+            <p className="price">R$ {PRICING.essencial}<small> /página</small></p>
             <ul><li>Formatação completa na norma escolhida</li><li>Sumário, listas e numeração automáticos</li><li>Referências padronizadas</li><li>1 rodada de ajustes</li></ul>
             <Link to="/pedido?plano=essencial" className="btn">Escolher Essencial</Link>
           </div>
           <div className="plan dark">
             <span className="plan-badge">MAIS PEDIDO</span>
             <div><h3 className="name">Completo</h3><p className="desc" style={{ margin: '6px 0 0' }}>Para defesa, depósito e submissão sem surpresas.</p></div>
-            <p className="price">R$ [PREÇO]<small> /página</small></p>
+            <p className="price">R$ {PRICING.completo}<small> /página</small></p>
             <ul><li>Tudo do Essencial</li><li>Tabelas e figuras padronizadas</li><li>Conferência citação × referência</li><li>Template editável para continuar escrevendo</li><li>Ajustes até a versão final ({BUSINESS.revisionWindow})</li></ul>
             <Link to="/pedido?plano=completo" className="btn btn-light">Escolher Completo</Link>
           </div>
           <div className="plan dashed">
             <div><h3 className="name">Sob medida</h3><p className="desc muted" style={{ margin: '6px 0 0' }}>Combine formatação com idioma e apresentação.</p></div>
-            <p className="price">Orçamento</p>
+            <p className="price">Combine<small> serviços</small></p>
             <ul><li>Tradução e revisão de inglês</li><li>Slides, pôster e resumo gráfico</li><li>Submissão assistida e resposta aos revisores</li><li>Pacotes para grupos de pesquisa</li></ul>
             <Link to="/pedido?plano=sob-medida" className="btn btn-primary">Montar meu pacote</Link>
           </div>
+        </div>
+        <div className="plan-terms">
+          <div>
+            <p className="label">Prazos de formatação</p>
+            <ul>{DEADLINES.map((d) => <li key={d.doc}><span>{d.doc}</span><strong>{d.days}</strong></li>)}</ul>
+          </div>
+          <div>
+            <p className="label">Condições</p>
+            <ul>
+              <li><span>Pedido mínimo</span><strong>{PRICING.minimum}</strong></li>
+              <li><span>Urgência em 48 h</span><strong>{PRICING.urgency48}</strong></li>
+              <li><span>Urgência em 24 h</span><strong>{PRICING.urgency24}</strong></li>
+            </ul>
+          </div>
+          <p className="muted" style={{ margin: 0, fontSize: 14, gridColumn: '1 / -1' }}>Contamos todas as páginas do arquivo, inclusive capa, sumário e referências. O orçamento final vem fechado antes de começarmos.</p>
         </div>
       </section>
 

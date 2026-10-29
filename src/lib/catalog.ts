@@ -6,6 +6,10 @@ export interface Service {
   title: string;
   description: string;
   exclusive?: boolean;
+  /** Preço exibido no site (referência; o orçamento final é fechado por pedido). */
+  price: string;
+  /** Prazo padrão de entrega. */
+  deadline: string;
 }
 
 export const GROUPS: Record<ServiceGroup, string> = {
@@ -15,19 +19,19 @@ export const GROUPS: Record<ServiceGroup, string> = {
 };
 
 export const SERVICES: Service[] = [
-  { id: 'A1', group: 'A', exclusive: true, title: 'TCC, dissertação e tese na ABNT', description: 'NBR 14724 completa: capa, folha de rosto, sumário e listas automáticos, numeração, títulos, citações e o manual da sua instituição.' },
-  { id: 'A2', group: 'A', title: 'Artigo nas normas da revista', description: 'Adequação ao guia para autores e ao template do periódico — Elsevier, Springer, MDPI, SciELO, IEEE e outros.' },
-  { id: 'A3', group: 'A', exclusive: true, title: 'Referências e citações', description: 'NBR 6023 e 10520, APA, Vancouver. Conferência citação × lista e organização da sua base no Zotero ou Mendeley.' },
-  { id: 'A4', group: 'A', title: 'Tabelas, quadros e figuras', description: 'Padronização de legendas, fontes, numeração e resolução, tabelas no padrão IBGE e figuras prontas para impressão.' },
-  { id: 'A5', group: 'A', exclusive: true, title: 'Templates Word e LaTeX', description: 'Modelo com estilos prontos, ou projeto Overleaf com abnTeX2 — para você continuar escrevendo já formatado.' },
-  { id: 'B1', group: 'B', title: 'Tradução acadêmica PT → EN', description: 'Tradução técnica com a terminologia da sua área, seguida de revisão do inglês. Envie seu glossário e a lista de referências.' },
-  { id: 'B2', group: 'B', title: 'Revisão de texto', description: 'Português ou inglês: gramática, coesão e clareza, sempre com controle de alterações para você aprovar cada mudança.' },
-  { id: 'B3', group: 'B', exclusive: true, title: 'Cover letter e resposta aos revisores', description: 'Carta ao editor na submissão e, depois, a carta ponto a ponto respondendo aos pareceristas na revisão.' },
-  { id: 'B4', group: 'B', exclusive: true, title: 'Escolha de revista e submissão assistida', description: 'Indicação de periódicos por escopo e Qualis, checklist de submissão e acompanhamento no sistema da revista.' },
-  { id: 'C1', group: 'C', exclusive: true, title: 'Slides de defesa e qualificação', description: 'Apresentação limpa e objetiva a partir do seu texto, com roteiro de tempo e figuras redesenhadas para projeção.' },
-  { id: 'C2', group: 'C', exclusive: true, title: 'Pôster e banner de congresso', description: 'No tamanho e no modelo exigidos pelo evento, pronto para gráfica ou para o e-pôster.' },
-  { id: 'C3', group: 'C', exclusive: true, title: 'Figuras técnicas vetoriais', description: 'Gráficos, fluxogramas, esquemas de ensaio e desenhos de engenharia refeitos em vetor, no padrão da revista.' },
-  { id: 'C4', group: 'C', title: 'Resumo gráfico', description: 'O graphical abstract que muitas revistas exigem — e que também vira post para divulgar seu artigo.' },
+  { id: 'A1', group: 'A', exclusive: true, title: 'TCC, dissertação e tese na ABNT', description: 'NBR 14724 completa: capa, folha de rosto, sumário e listas automáticos, numeração, títulos, citações e o manual da sua instituição.', price: 'a partir de R$ 4,00/página', deadline: '3 a 7 dias úteis' },
+  { id: 'A2', group: 'A', title: 'Artigo nas normas da revista', description: 'Adequação ao guia para autores e ao template do periódico — Elsevier, Springer, MDPI, SciELO, IEEE e outros.', price: 'R$ 220 por artigo', deadline: '2 dias úteis' },
+  { id: 'A3', group: 'A', exclusive: true, title: 'Referências e citações', description: 'NBR 6023 e 10520, APA, Vancouver. Conferência citação × lista e organização da sua base no Zotero ou Mendeley.', price: 'R$ 1,20 por referência', deadline: '2 dias úteis' },
+  { id: 'A4', group: 'A', title: 'Tabelas, quadros e figuras', description: 'Padronização de legendas, fontes, numeração e resolução, tabelas no padrão IBGE e figuras prontas para impressão.', price: 'R$ 6 por tabela/figura', deadline: '2 dias úteis' },
+  { id: 'A5', group: 'A', exclusive: true, title: 'Templates Word e LaTeX', description: 'Modelo com estilos prontos, ou projeto Overleaf com abnTeX2 — para você continuar escrevendo já formatado.', price: 'Word R$ 250 · LaTeX R$ 450', deadline: '3 dias úteis' },
+  { id: 'B1', group: 'B', title: 'Tradução acadêmica PT → EN', description: 'Tradução técnica com a terminologia da sua área, seguida de revisão do inglês. Envie seu glossário e a lista de referências.', price: 'R$ 0,28 por palavra', deadline: '~2.500 palavras/dia útil' },
+  { id: 'B2', group: 'B', title: 'Revisão de texto', description: 'Português ou inglês: gramática, coesão e clareza, sempre com controle de alterações para você aprovar cada mudança.', price: 'PT R$ 9/página · EN R$ 0,10/palavra', deadline: '3 a 5 dias úteis' },
+  { id: 'B3', group: 'B', exclusive: true, title: 'Cover letter e resposta aos revisores', description: 'Carta ao editor na submissão e, depois, a carta ponto a ponto respondendo aos pareceristas na revisão.', price: 'Cover letter R$ 150 · resposta R$ 350', deadline: '2 dias úteis' },
+  { id: 'B4', group: 'B', exclusive: true, title: 'Escolha de revista e submissão assistida', description: 'Indicação de periódicos por escopo e Qualis, checklist de submissão e acompanhamento no sistema da revista.', price: 'R$ 390 por artigo', deadline: '3 dias úteis' },
+  { id: 'C1', group: 'C', exclusive: true, title: 'Slides de defesa e qualificação', description: 'Apresentação limpa e objetiva a partir do seu texto, com roteiro de tempo e figuras redesenhadas para projeção.', price: 'R$ 18 por slide · defesa a partir de R$ 450', deadline: '3 dias úteis' },
+  { id: 'C2', group: 'C', exclusive: true, title: 'Pôster e banner de congresso', description: 'No tamanho e no modelo exigidos pelo evento, pronto para gráfica ou para o e-pôster.', price: 'R$ 220 por pôster', deadline: '2 dias úteis' },
+  { id: 'C3', group: 'C', exclusive: true, title: 'Figuras técnicas vetoriais', description: 'Gráficos, fluxogramas, esquemas de ensaio e desenhos de engenharia refeitos em vetor, no padrão da revista.', price: 'R$ 45 a R$ 120 por figura', deadline: '1 a 3 dias úteis' },
+  { id: 'C4', group: 'C', title: 'Resumo gráfico', description: 'O graphical abstract que muitas revistas exigem — e que também vira post para divulgar seu artigo.', price: 'R$ 280', deadline: '4 dias úteis' },
 ];
 
 export const serviceTitle = (id: string) => SERVICES.find((s) => s.id === id)?.title ?? id;

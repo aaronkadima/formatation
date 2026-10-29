@@ -114,9 +114,9 @@ img, svg { display: block; }
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 48px; }
 .group-title { margin: 0 0 16px; font-family: var(--mono); font-weight: 500; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); padding-bottom: 12px; }
 .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); border-left: 1px solid var(--line); margin-bottom: 56px; }
-.svc { padding: 28px 24px 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+.svc { padding: 28px 24px 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; display: flex; flex-direction: column; }
 .svc-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 18px; font-family: var(--mono); font-size: 13px; color: var(--muted); min-height: 22px; }
-.svc p { margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+.svc p { margin: 10px 0 18px; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
 
 /* Plans */
 .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -268,3 +268,15 @@ tbody tr:hover { background: #FAFAF8; }
   html { scroll-behavior: auto; }
   .btn, .spinner { transition: none; animation: none; }
 }
+
+/* Preço e prazo nos cartões de serviço */
+.svc-meta { margin: 0; margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line-2); display: grid; gap: 6px; font-size: 14px; }
+.svc-meta div { display: flex; justify-content: space-between; gap: 12px; }
+.svc-meta dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding-top: 2px; }
+.svc-meta dd { margin: 0; text-align: right; font-weight: 600; }
+
+/* Prazos e condições abaixo dos planos */
+.plan-terms { margin-top: 20px; border: 1.5px solid var(--ink); background: #fff; padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px 40px; }
+.plan-terms ul { list-style: none; margin: 8px 0 0; padding: 0; }
+.plan-terms li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.plan-terms li:last-child { border-bottom: 0; }

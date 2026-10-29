@@ -179,7 +179,7 @@ export default function Pedido() {
                     {SERVICES.filter((s) => s.group === g).map((s) => (
                       <label key={s.id} className="check">
                         <input type="checkbox" checked={form.services.includes(s.id)} onChange={() => toggleService(s.id)} />
-                        <span><small>{s.id}</small>{s.title}</span>
+                        <span><small>{s.id}</small>{s.title}<small style={{ marginTop: 4 }}>{s.price}</small></span>
                       </label>
                     ))}
                   </div>
