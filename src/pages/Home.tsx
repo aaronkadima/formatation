@@ -52,7 +52,7 @@ export default function Home() {
           <p className="lead" style={{ marginTop: 28 }}>Formatação ABNT, APA, Vancouver e normas de periódicos, tradução para o inglês, figuras técnicas e submissão assistida — feitos por quem publica artigos científicos, não por um robô de template.</p>
           <div className="cta-row">
             <Link to="/pedido" className="btn btn-primary" style={{ minHeight: 52 }}>Receber orçamento grátis <ArrowIcon /></Link>
-            <a href="#servicos" className="btn" style={{ minHeight: 52 }}>Ver todos os serviços</a>
+            <Link to="/#servicos" className="btn" style={{ minHeight: 52 }}>Ver todos os serviços</Link>
           </div>
         </div>
         <AnnotatedSheet />

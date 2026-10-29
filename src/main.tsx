@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
+
 import './styles.css';
 import { AuthProvider } from './lib/auth';
 import Layout from './components/Layout';
@@ -14,10 +15,13 @@ import Admin from './pages/Admin';
 import AdminPedido from './pages/AdminPedido';
 import NotFound from './pages/NotFound';
 
+// Prévia publicada como artifact: rotas em memória (o endereço da prévia não muda).
+const Router = import.meta.env.VITE_PREVIEW ? MemoryRouter : BrowserRouter;
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
@@ -30,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </AuthProvider>
   </React.StrictMode>,
 );

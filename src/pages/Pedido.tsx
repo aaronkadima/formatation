@@ -45,6 +45,7 @@ export default function Pedido() {
   const [norms, setNorms] = useState<File[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [waUrl, setWaUrl] = useState('');
 
   useEffect(() => {
     if (profile) {
@@ -81,7 +82,7 @@ export default function Pedido() {
     if (form.services.length === 0) return setError('Escolha pelo menos um serviço.');
 
     if (!supabase) {
-      window.open(whatsappLink(whatsappMessage()), '_blank', 'noopener');
+      setWaUrl(whatsappLink(whatsappMessage()));
       return;
     }
     if (originals.length === 0) return setError('Anexe o arquivo do seu trabalho.');
@@ -207,9 +208,16 @@ export default function Pedido() {
 
           {error && <p className="alert error" role="alert" style={{ marginTop: 20 }}>{error}</p>}
 
+          {waUrl && (
+            <div className="alert ok" role="status" style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>Mensagem pronta com os dados do pedido. Abra o WhatsApp para enviar e anexe seus arquivos lá.</span>
+              <a className="btn btn-primary btn-sm" href={waUrl} target="_blank" rel="noreferrer">Abrir no WhatsApp</a>
+            </div>
+          )}
+
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', marginTop: 24 }}>
             <button className="btn btn-primary" disabled={busy} style={{ minHeight: 56 }}>
-              {busy ? 'Enviando arquivos…' : supabase ? 'Enviar pedido' : 'Enviar pelo WhatsApp'} {!busy && <ArrowIcon />}
+              {busy ? 'Enviando arquivos…' : supabase ? 'Enviar pedido' : waUrl ? 'Atualizar mensagem' : 'Preparar mensagem no WhatsApp'} {!busy && <ArrowIcon />}
             </button>
             <span className="muted" style={{ fontSize: 14 }}>{supabase ? 'Seu texto fica em armazenamento privado. ' : ''}<Link to="/#faq">Dúvidas?</Link></span>
           </div>
